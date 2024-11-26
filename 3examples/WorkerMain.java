@@ -58,3 +58,5 @@ public class WorkerMain{
     stazysta1.work();
   }
 }
+
+//TODO add jaavdoc comments
