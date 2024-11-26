@@ -1,4 +1,3 @@
-// Representation of employee data (SRP)
 class Employee {
     private String name;
     private String position;
@@ -23,12 +22,10 @@ class Employee {
     }
 }
 
-// Interface for tax calculation (OCP, DIP)
 interface TaxCalculator {
     double calculateTax(double salary);
 }
 
-// Specific tax calculation implementations (OCP)
 class ManagerTaxCalculator implements TaxCalculator {
     @Override
     public double calculateTax(double salary) {
@@ -50,7 +47,6 @@ class DefaultTaxCalculator implements TaxCalculator {
     }
 }
 
-// Class responsible for tax operations (SRP, OCP)
 class TaxService {
     private final TaxCalculator taxCalculator;
 
@@ -64,12 +60,10 @@ class TaxService {
     }
 }
 
-// Interface for saving employee data (ISP, DIP)
 interface EmployeeRepository {
     void save(Employee employee);
 }
 
-// Concrete implementation for saving to a database (SRP, DIP)
 class DatabaseEmployeeRepository implements EmployeeRepository {
     @Override
     public void save(Employee employee) {
@@ -80,12 +74,10 @@ class DatabaseEmployeeRepository implements EmployeeRepository {
 // Main program class
 public class Main {
     public static void main(String[] args) {
-        // Creating objects
         Employee manager = new Employee("Anna Kowalska", "Manager", 8000);
         Employee developer = new Employee("Jan Nowak", "Developer", 6000);
         Employee worker = new Employee("Piotr Wiśniewski", "Worker", 4000);
 
-        // Tax operations
         TaxService managerTaxService = new TaxService(new ManagerTaxCalculator());
         TaxService developerTaxService = new TaxService(new DeveloperTaxCalculator());
         TaxService defaultTaxService = new TaxService(new DefaultTaxCalculator());
@@ -94,7 +86,6 @@ public class Main {
         developerTaxService.printTax(developer);
         defaultTaxService.printTax(worker);
 
-        // Saving to the database
         EmployeeRepository repository = new DatabaseEmployeeRepository();
         repository.save(manager);
         repository.save(developer);
